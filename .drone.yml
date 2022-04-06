@@ -1,0 +1,15 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build wireguard apollolake 6.2 package
+    image: ubuntu:latest
+    environment:
+      PACKAGE_ARCH: apollolake
+      DSM_VER: 6.2
+      IS_IN_CONTAINER: 1
+    commands: 
+    - apt-get update
+    - apt-get -qy install git python3 wget ca-certificates
+    - ./build.sh
