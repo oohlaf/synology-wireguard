@@ -79,9 +79,9 @@ build_env="/build_env/ds.$PACKAGE_ARCH-$DSM_VER"
 
 if [ ! -d "$build_env" ]; then
     if [ -f "/toolkit_tarballs/base_env-$DSM_VER.txz" ] && [ -f "/toolkit_tarballs/ds.$PACKAGE_ARCH-$DSM_VER.env.txz" ] && [ -f "/toolkit_tarballs/ds.$PACKAGE_ARCH-$DSM_VER.dev.txz" ]; then
-        pkgscripts-ng/EnvDeploy -p $PACKAGE_ARCH -v $DSM_VER -t /toolkit_tarballs
+        pkgscripts-ng/EnvDeploy -q -p $PACKAGE_ARCH -v $DSM_VER -t /toolkit_tarballs
     else
-        pkgscripts-ng/EnvDeploy -p $PACKAGE_ARCH -v $DSM_VER
+        pkgscripts-ng/EnvDeploy -q -p $PACKAGE_ARCH -v $DSM_VER
     fi
 
     # Ensure the installed toolchain has support for CA signed certificates.
