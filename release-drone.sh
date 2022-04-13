@@ -25,14 +25,14 @@ for ver in ${VERSIONS[@]}; do
     url_base="https://sourceforge.net/projects/dsgpl/files/toolkit/DSM$ver"
     mkdir -p /toolkit_tarballs
     if [ ! -f base_env-$ver.txz ]; then
-        wget -q --show-progress "$url_base/base_env-$ver.txz"
+        wget -q  "$url_base/base_env-$ver.txz"
     fi
     for arch in ${ARCHS[@]}; do
         if [ ! -f ds.$arch-$ver.dev.txz ]; then
-            wget -q --show-progress "$url_base/ds.$arch-$ver.dev.txz"
+            wget -q  "$url_base/ds.$arch-$ver.dev.txz"
         fi
         if [ ! -f ds.$arch-$ver.env.txz ]; then
-            wget -q --show-progress "$url_base/ds.$arch-$ver.env.txz"
+            wget -q  "$url_base/ds.$arch-$ver.env.txz"
         fi
     done
 done
