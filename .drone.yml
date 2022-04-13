@@ -3,12 +3,10 @@ type: docker
 name: default
 
 steps:
-  - name: build wireguard apollolake 6.2 package
+  - name: build wireguard
     image: ubuntu:latest
     privileged: true
     environment:
-      PACKAGE_ARCH: apollolake
-      DSM_VER: 6.2
       IS_IN_CONTAINER: 1
     commands: 
     - apt-get update
@@ -16,4 +14,4 @@ steps:
     - mkdir -p /source/WireGuard
     - cp -r * /source/WireGuard
     - cd /
-    - /source/WireGuard/build.sh
+    - /source/WireGuard/release-drone.sh
