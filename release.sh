@@ -27,6 +27,7 @@ fi
 
 # Download all necessary tarballs before calling into the docker containers.
 echo "Downloading environment tarballs"
+mkdir -p toolkit_tarballs
 for ver in ${VERSIONS[@]}; do
     url_base="https://sourceforge.net/projects/dsgpl/files/toolkit/DSM$ver"
     pushd toolkit_tarballs/
@@ -44,6 +45,12 @@ for ver in ${VERSIONS[@]}; do
     popd
 done
 
+# Change permissions of the tarballs directory to match the local user if called
+# using sudo
+if [ ! -z ${SUDO_USER+x} ]; then
+    chown "$SUDO_USER:$SUDO_GROUP" -R toolkit_tarballs/
+fi
+
 # Ensure that we are using an up to date docker image
 docker build -t synobuild .
 
@@ -58,6 +65,7 @@ for ver in ${VERSIONS[@]}; do
         if [ -d artifacts/ ]; then
             rm -rf artifacts/
         fi
+        mkdir -p artifacts
 
         docker run \
             --rm \
@@ -80,5 +88,5 @@ fi
 # Change permissions of the target directory to match the local user if called
 # using sudo
 if [ ! -z ${SUDO_USER+x} ]; then
-    chown "$SUDO_USER:$SUDO_USER" -R target/
+    chown "$SUDO_USER:$SUDO_GROUP" -R target/
 fi

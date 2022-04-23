@@ -1,6 +1,7 @@
 artifacts/
 build_env/
 toolkit_tarballs/
+target/
 *.log
 *.old
 *.crt
