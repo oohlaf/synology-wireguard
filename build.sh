@@ -114,6 +114,7 @@ fi
 # Disable quit if errors to allow printing of logfiles
 set +e
 
+# bind mount /dev into build env chroot
 mount -o bind /dev $build_env/dev
 
 # Build packages
