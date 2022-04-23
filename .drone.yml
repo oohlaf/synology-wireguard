@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build wireguard
+    image: ubuntu:latest
+    privileged: true
+    environment:
+      IS_IN_CONTAINER: 1
+    commands: 
+    - apt-get update
+    - apt-get -qy install git python3 wget ca-certificates
+    - mkdir -p /source/WireGuard
+    - cp -r * /source/WireGuard
+    - cd /
+    - /source/WireGuard/release-drone.sh

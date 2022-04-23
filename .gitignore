@@ -1,1 +1,10 @@
 artifacts/
+build_env/
+toolkit_tarballs/
+*.log
+*.old
+*.crt
+INFO.sh
+SynoBuildConf/
+conf/
+pkgscripts-ng/
